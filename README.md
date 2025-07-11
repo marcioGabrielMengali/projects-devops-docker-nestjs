@@ -13,49 +13,22 @@ Welcome! This project demonstrates how to **dockerize a NestJS application** for
 
 ## 🛠️ Docker Commands
 
-### 1. Build the Docker Image
+## 🐳 Common Docker Commands
+
+To **run the project**:
+
 ```bash
-docker build -t my-nest-js-app:v1 .
+docker-compose up --build -d
 ```
 
-### 2. List Docker Images
+To **stop the project and remove volumes**:
+
 ```bash
-docker image ls
+docker-compose down -v
 ```
 
-### 3. Create a Docker Network
-```bash
-docker network create --driver bridge my-nest-js-app-network
-```
+To **test the running application**:
 
-### 4. List Docker Networks
-```bash
-docker network ls
-```
-
-### 5. Create a Docker Volume
-```bash
-docker volume create my-nest-js-app-volume
-```
-
-### 6. List Docker Volumes
-```bash
-docker volume ls
-```
-
-### 7. Run the Container
-```bash
-docker run -d \
-  --name app \
-  -p 3000:3000 \
-  --network my-nest-js-app-network \
-  --volume my-nest-js-app-volume:/usr/src/app \
-  my-nest-js-app:v1
-```
-
-### 8. Test the Application
 ```bash
 curl http://localhost:3000
 ```
-
----

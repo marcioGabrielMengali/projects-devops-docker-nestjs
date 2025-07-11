@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql:8
+    container_name: db
+    environment:
+      MYSQL_DATABASE: app
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: root
+    ports:
+      - 3306
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - app-network
+
+  app:
+    build:
+      context: .
+    container_name: app
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
